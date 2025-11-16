@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 const Page = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -41,28 +42,7 @@ const Page = () => {
   return (
       <main className="w-full min-h-screen bg-background text-foreground">
         {/* Navigation */}
-        <nav className="fixed top-0 z-50 w-full px-8 py-6 flex items-center justify-between bg-background border-b border-border">
-          <div className="flex gap-8 text-sm font-medium tracking-wider">
-            <Link href="/shop">
-              <button className="hover:opacity-70 transition-opacity">SHOP</button>
-            </Link>
-            <Link href="/about">
-              <button className="hover:opacity-70 transition-opacity">ABOUT</button>
-            </Link>
-            <Link href="/contact">
-              <button className="hover:opacity-70 transition-opacity">CONTACT</button>
-            </Link>
-          </div>
-
-
-          <Link href="/">
-            <div className="text-sm font-bold tracking-widest">MML GEMS</div>
-          </Link>
-          <div className="flex gap-6 text-sm font-medium tracking-wider">
-            <button className="hover:opacity-70 transition-opacity">ACCOUNT</button>
-            <button className="hover:opacity-70 transition-opacity">CART (0)</button>
-          </div>
-        </nav>
+        <Navbar />
 
         {/* Hero Section */}
         <section className="relative w-full pt-24 pb-12 px-8 min-h-screen flex items-center justify-center">
