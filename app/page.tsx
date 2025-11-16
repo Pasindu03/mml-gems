@@ -7,9 +7,25 @@ const Page = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const diamondImages = ["/alexandrite.jpeg", "/blue-sapphire.jpeg", "/pink-sapphire.jpeg", "/pink-spinel.jpeg"
-      , "/red-spinel.jpeg", "/taaffeite.jpeg", "/teal-sapphire.jpeg", "/white-sapphire.jpeg", "yellow-sapphire.jpeg"
-  ]
+  const diamondImages = [
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/alexandrite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9hbGV4YW5kcml0ZS5qcGVnIiwiaWF0IjoxNzYzMzA3MzQ1LCJleHAiOjE3OTQ4NDMzNDV9.-ZIb94xPZz2Elzx-7wVVkKAECprIgN8stcHS8y53qHs",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/blue-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9ibHVlLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczMjUsImV4cCI6MTc5NDg0MzMyNX0.SCeP87MPujiByg5pF1fNEkHMHkOGGoWGB6SenjVWEDk",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczOTgsImV4cCI6MTc5NDg0MzM5OH0.JgR0-jhnDD1deXPqAR5PXFQkM2wmzksJnAnmXwyCDSo",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNwaW5lbC5qcGVnIiwiaWF0IjoxNzYzMzA3NDA3LCJleHAiOjE3OTQ4NDM0MDd9.wDiSs3mNgwQ8apYv5skqZ1PGAuE8GdEuB8o0aHXDSnI",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/red-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9yZWQtc3BpbmVsLmpwZWciLCJpYXQiOjE3NjMzMDc0MTksImV4cCI6MTc5NDg0MzQxOX0.wC9UDaGPdZd60K2-jFneM8gs841WTU3PLLikg9o1Sps",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/taaffeite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90YWFmZmVpdGUuanBlZyIsImlhdCI6MTc2MzMwNzQzNiwiZXhwIjoxNzk0ODQzNDM2fQ.A6NR9UFLesM-g6BU5Cn4Ui7drRrycAcme0abPtEpPbU",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/teal-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90ZWFsLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDc0NDYsImV4cCI6MTc5NDg0MzQ0Nn0.V2kzWgb5EZZlsuszW9NSizvNIa6COpQmQaJFUJ4v5ro",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/white-sapphire.jpeg?token=eyJraWQiOiJzdG9yZWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy93aGl0ZS1zYXBwaGlyZS5qcGVnIiwiaWF0IjoxNzYzMzA3NDU0LCJleHAiOjE3OTQ4NDM0NTR9.daukSiwrXui-RBzIdljgO7POw-Dg6BvJ0_xOMW0mngY",
+
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/yellow-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy95ZWxsb3ctc2FwcGhpcmUuanBlZyIsImlhdCI6MTc2MzMwNzc3OSwiZXhwIjoxNzk0ODQzNzc5fQ.ncBsH_l8gB_nvvME2NanDck3Jlk3PQLNBOcACiUy5mI"
+  ];
 
   useEffect(() => {
     setIsLoaded(true)

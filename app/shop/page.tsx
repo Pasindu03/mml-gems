@@ -27,7 +27,7 @@ export default function ShopPage() {
             name: 'Alexandrite',
             category: 'gemstones',
             price: '$2,450',
-            image: '/alexandrite.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/alexandrite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9hbGV4YW5kcml0ZS5qcGVnIiwiaWF0IjoxNzYzMzA3MzQ1LCJleHAiOjE3OTQ4NDMzNDV9.-ZIb94xPZz2Elzx-7wVVkKAECprIgN8stcHS8y53qHs',
             description: 'Premium natural alexandrite gemstone'
         },
         {
@@ -35,7 +35,7 @@ export default function ShopPage() {
             name: 'Blue Sapphire',
             category: 'gemstones',
             price: '$1,850',
-            image: '/blue-sapphire.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/blue-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9ibHVlLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczMjUsImV4cCI6MTc5NDg0MzMyNX0.SCeP87MPujiByg5pF1fNEkHMHkOGGoWGB6SenjVWEDk',
             description: 'Fine quality natural blue sapphire'
         },
         {
@@ -43,7 +43,7 @@ export default function ShopPage() {
             name: 'Pink Sapphire',
             category: 'gemstones',
             price: '$3,200',
-            image: '/pink-sapphire.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczOTgsImV4cCI6MTc5NDg0MzM5OH0.JgR0-jhnDD1deXPqAR5PXFQkM2wmzksJnAnmXwyCDSo',
             description: 'Premium natural pink sapphire'
         },
         {
@@ -51,7 +51,7 @@ export default function ShopPage() {
             name: 'Pink Spinel',
             category: 'gemstones',
             price: '$1,650',
-            image: '/pink-spinel.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNwaW5lbC5qcGVnIiwiaWF0IjoxNzYzMzA3NDA3LCJleHAiOjE3OTQ4NDM0MDd9.wDiSs3mNgwQ8apYv5skqZ1PGAuE8GdEuB8o0aHXDSnI',
             description: 'High-grade natural pink spinel'
         },
         {
@@ -59,7 +59,7 @@ export default function ShopPage() {
             name: 'Red Spinel',
             category: 'gemstones',
             price: '$5,800',
-            image: '/red-spinel.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/red-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9yZWQtc3BpbmVsLmpwZWciLCJpYXQiOjE3NjMzMDc0MTksImV4cCI6MTc5NDg0MzQxOX0.wC9UDaGPdZd60K2-jFneM8gs841WTU3PLLikg9o1Sps',
             description: 'Rare natural red spinel gemstone'
         },
         {
@@ -67,7 +67,7 @@ export default function ShopPage() {
             name: 'Taaffeite',
             category: 'gemstones',
             price: '$2,100',
-            image: '/taaffeite.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/taaffeite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90YWFmZmVpdGUuanBlZyIsImlhdCI6MTc2MzMwNzQzNiwiZXhwIjoxNzk0ODQzNDM2fQ.A6NR9UFLesM-g6BU5Cn4Ui7drRrycAcme0abPtEpPbU',
             description: 'Extremely rare natural taaffeite'
         },
         {
@@ -75,7 +75,7 @@ export default function ShopPage() {
             name: 'Teal Sapphire',
             category: 'gemstones',
             price: '$1,450',
-            image: '/teal-sapphire.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/teal-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90ZWFsLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDc0NDYsImV4cCI6MTc5NDg0MzQ0Nn0.V2kzWgb5EZZlsuszW9NSizvNIa6COpQmQaJFUJ4v5ro',
             description: 'Natural teal sapphire with unique color'
         },
         {
@@ -83,7 +83,7 @@ export default function ShopPage() {
             name: 'White Sapphire',
             category: 'gemstones',
             price: '$1,200',
-            image: '/white-sapphire.jpeg',
+            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/white-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy93aGl0ZS1zYXBwaGlyZS5qcGVnIiwiaWF0IjoxNzYzMzA3NDU0LCJleHAiOjE3OTQ4NDM0NTR9.daukSiwrXui-RBzIdljgO7POw-Dg6BvJ0_xOMW0mngY',
             description: 'Brilliant natural white sapphire'
         },
     ];
