@@ -9,8 +9,6 @@ const Page = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const diamondImages = [
-    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/alexandrite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9hbGV4YW5kcml0ZS5qcGVnIiwiaWF0IjoxNzYzMzA3MzQ1LCJleHAiOjE3OTQ4NDMzNDV9.-ZIb94xPZz2Elzx-7wVVkKAECprIgN8stcHS8y53qHs",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/blue-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9ibHVlLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczMjUsImV4cCI6MTc5NDg0MzMyNX0.SCeP87MPujiByg5pF1fNEkHMHkOGGoWGB6SenjVWEDk",
 
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczOTgsImV4cCI6MTc5NDg0MzM5OH0.JgR0-jhnDD1deXPqAR5PXFQkM2wmzksJnAnmXwyCDSo",
