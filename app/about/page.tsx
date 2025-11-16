@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from "next/link";
 
 export default function AboutPage() {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -18,7 +19,9 @@ export default function AboutPage() {
                     <a href="/about" className="hover:opacity-70 transition-opacity">ABOUT</a>
                     <a href="/contact" className="hover:opacity-70 transition-opacity">CONTACT</a>
                 </div>
-                <div className="text-sm font-bold tracking-widest">NATURAL GEMS</div>
+                <Link href="/">
+                    <div className="text-sm font-bold tracking-widest">MML GEMS</div>
+                </Link>
                 <div className="flex gap-6 text-sm font-medium tracking-wider">
                     <button className="hover:opacity-70 transition-opacity">ACCOUNT</button>
                     <button className="hover:opacity-70 transition-opacity">CART (0)</button>

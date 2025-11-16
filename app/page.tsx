@@ -39,7 +39,9 @@ const Page = () => {
           </div>
 
 
-          <div className="text-sm font-bold tracking-widest">NATURAL GEMS</div>
+          <Link href="/">
+            <div className="text-sm font-bold tracking-widest">MML GEMS</div>
+          </Link>
           <div className="flex gap-6 text-sm font-medium tracking-wider">
             <button className="hover:opacity-70 transition-opacity">ACCOUNT</button>
             <button className="hover:opacity-70 transition-opacity">CART (0)</button>
@@ -103,22 +105,6 @@ const Page = () => {
                   ))}
                 </div>
               </div>
-            </div>
-
-            <div
-                className={`flex flex-col items-end transition-all duration-700 delay-200 ${
-                    isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-                }`}
-            >
-              <div className="mb-8 text-center">
-                <div className="bg-muted aspect-square rounded-lg mb-4 w-32 flex items-center justify-center">
-                  <div className="text-4xl">💍</div>
-                </div>
-                <p className="text-xs font-light tracking-widest">RUBY RING</p>
-              </div>
-              <button className="w-12 h-12 rounded-full border border-foreground/30 flex items-center justify-center hover:bg-foreground/5 transition-colors text-lg">
-                +
-              </button>
             </div>
           </div>
         </section>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from "next/link";
 
 interface Product {
     id: number
@@ -23,69 +24,69 @@ export default function ShopPage() {
     const products: Product[] = [
         {
             id: 1,
-            name: 'Ruby Ring',
-            category: 'rings',
+            name: 'Alexandrite',
+            category: 'gemstones',
             price: '$2,450',
-            image: '/elegant-ruby-ring-jewelry.jpg',
-            description: 'Premium natural ruby in 18k white gold'
+            image: '/alexandrite.jpeg',
+            description: 'Premium natural alexandrite gemstone'
         },
         {
             id: 2,
-            name: 'Sapphire Pendant',
-            category: 'pendants',
+            name: 'Blue Sapphire',
+            category: 'gemstones',
             price: '$1,850',
-            image: '/sapphire-pendant-necklace.png',
-            description: 'Deep blue sapphire with diamond accents'
+            image: '/blue-sapphire.jpeg',
+            description: 'Fine quality natural blue sapphire'
         },
         {
             id: 3,
-            name: 'Diamond Bracelet',
-            category: 'bracelets',
+            name: 'Pink Sapphire',
+            category: 'gemstones',
             price: '$3,200',
-            image: '/diamond-tennis-bracelet.jpg',
-            description: 'Fine diamond bracelet with platinum setting'
+            image: '/pink-sapphire.jpeg',
+            description: 'Premium natural pink sapphire'
         },
         {
             id: 4,
-            name: 'Emerald Earrings',
-            category: 'earrings',
+            name: 'Pink Spinel',
+            category: 'gemstones',
             price: '$1,650',
-            image: '/emerald-drop-earrings-gold.jpg',
-            description: 'Natural emerald drop earrings in 14k gold'
+            image: '/pink-spinel.jpeg',
+            description: 'High-grade natural pink spinel'
         },
         {
             id: 5,
-            name: 'Pink Diamond Ring',
-            category: 'rings',
+            name: 'Red Spinel',
+            category: 'gemstones',
             price: '$5,800',
-            image: '/pink-diamond-engagement-ring.jpg',
-            description: 'Rare pink diamond in platinum'
+            image: '/red-spinel.jpeg',
+            description: 'Rare natural red spinel gemstone'
         },
         {
             id: 6,
-            name: 'Tanzanite Necklace',
-            category: 'pendants',
+            name: 'Taaffeite',
+            category: 'gemstones',
             price: '$2,100',
-            image: '/tanzanite-gemstone-necklace.jpg',
-            description: 'Stunning tanzanite with white gold chain'
+            image: '/taaffeite.jpeg',
+            description: 'Extremely rare natural taaffeite'
         },
         {
             id: 7,
-            name: 'Opal Bracelet',
-            category: 'bracelets',
+            name: 'Teal Sapphire',
+            category: 'gemstones',
             price: '$1,450',
-            image: '/opal-gemstone-bracelet-silver.jpg',
-            description: 'Rainbow opal bracelet in sterling silver'
+            image: '/teal-sapphire.jpeg',
+            description: 'Natural teal sapphire with unique color'
         },
         {
             id: 8,
-            name: 'Aquamarine Studs',
-            category: 'earrings',
+            name: 'White Sapphire',
+            category: 'gemstones',
             price: '$1,200',
-            image: '/aquamarine-stud-earrings.jpg',
-            description: 'Classic aquamarine studs in white gold'
+            image: '/white-sapphire.jpeg',
+            description: 'Brilliant natural white sapphire'
         },
-    ]
+    ];
 
     const categories = ['all', 'rings', 'pendants', 'bracelets', 'earrings']
     const filteredProducts = selectedCategory === 'all'
@@ -101,7 +102,9 @@ export default function ShopPage() {
                     <a href="/about" className="hover:opacity-70 transition-opacity">ABOUT</a>
                     <a href="/contact" className="hover:opacity-70 transition-opacity">CONTACT</a>
                 </div>
-                <div className="text-sm font-bold tracking-widest">NATURAL GEMS</div>
+                <Link href="/">
+                    <div className="text-sm font-bold tracking-widest">MML GEMS</div>
+                </Link>
                 <div className="flex gap-6 text-sm font-medium tracking-wider">
                     <button className="hover:opacity-70 transition-opacity">ACCOUNT</button>
                     <button className="hover:opacity-70 transition-opacity">CART (0)</button>
