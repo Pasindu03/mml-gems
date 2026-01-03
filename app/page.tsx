@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar"
 
 const Page = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -9,21 +9,14 @@ const Page = () => {
 
   const diamondImages = [
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/blue-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9ibHVlLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczMjUsImV4cCI6MTc5NDg0MzMyNX0.SCeP87MPujiByg5pF1fNEkHMHkOGGoWGB6SenjVWEDk",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczOTgsImV4cCI6MTc5NDg0MzM5OH0.JgR0-jhnDD1deXPqAR5PXFQkM2wmzksJnAnmXwyCDSo",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNwaW5lbC5qcGVnIiwiaWF0IjoxNzYzMzA3NDA3LCJleHAiOjE3OTQ4NDM0MDd9.wDiSs3mNgwQ8apYv5skqZ1PGAuE8GdEuB8o0aHXDSnI",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/red-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9yZWQtc3BpbmVsLmpwZWciLCJpYXQiOjE3NjMzMDc0MTksImV4cCI6MTc5NDg0MzQxOX0.wC9UDaGPdZd60K2-jFneM8gs841WTU3PLLikg9o1Sps",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/taaffeite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90YWFmZmVpdGUuanBlZyIsImlhdCI6MTc2MzMwNzQzNiwiZXhwIjoxNzk0ODQzNDM2fQ.A6NR9UFLesM-g6BU5Cn4Ui7drRrycAcme0abPtEpPbU",
-
     "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/teal-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90ZWFsLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDc0NDYsImV4cCI6MTc5NDg0MzQ0Nn0.V2kzWgb5EZZlsuszW9NSizvNIa6COpQmQaJFUJ4v5ro",
-
-    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/white-sapphire.jpeg?token=eyJraWQiOiJzdG9yZWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy93aGl0ZS1zYXBwaGlyZS5qcGVnIiwiaWF0IjoxNzYzMzA3NDU0LCJleHAiOjE3OTQ4NDM0NTR9.daukSiwrXui-RBzIdljgO7POw-Dg6BvJ0_xOMW0mngY",
-
-    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/yellow-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy95ZWxsb3ctc2FwcGhpcmUuanBlZyIsImlhdCI6MTc2MzMwNzc3OSwiZXhwIjoxNzk0ODQzNzc5fQ.ncBsH_l8gB_nvvME2NanDck3Jlk3PQLNBOcACiUy5mI"
-  ];
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/white-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy93aGl0ZS1zYXBwaGlyZS5qcGVnIiwiaWF0IjoxNzYzMzA3NDU0LCJleHAiOjE3OTQ4NDM0NTR9.daukSiwrXui-RBzIdljgO7POw-Dg6BvJ0_xOMW0mngY",
+    "https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/yellow-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy95ZWxsb3ctc2FwcGhpcmUuanBlZyIsImlhdCI6MTc2MzMwNzc3OSwiZXhwIjoxNzk0ODQzNzc5fQ.ncBsH_l8gB_nvvME2NanDck3Jlk3PQLNBOcACiUy5mI",
+  ]
 
   useEffect(() => {
     setIsLoaded(true)
@@ -34,75 +27,85 @@ const Page = () => {
       setCurrentImageIndex((prev) => (prev + 1) % diamondImages.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [])
+  }, [diamondImages.length])
 
   return (
-      <main className="w-full min-h-screen bg-background text-foreground">
+      <main className="w-full min-h-screen bg-background text-foreground overflow-x-hidden">
         {/* Navigation */}
         <Navbar />
 
         {/* Hero Section */}
-        <section className="relative w-full pt-24 pb-12 px-8 min-h-screen flex items-center justify-center">
-          <div className="w-full max-w-7xl grid grid-cols-3 gap-12 items-center">
+        <section className="relative w-full pt-24 md:pt-32 pb-12 px-6 md:px-12 min-h-screen flex items-center justify-center overflow-hidden">
+          <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-center">
+            {/* Left Column: Info - Reordered for Mobile Flow */}
             <div
-                className={`transition-all duration-700 ${
-                    isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+                className={`order-2 md:order-1 transition-all duration-1000 delay-300 ${
+                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
             >
-              <p className="text-sm leading-relaxed text-foreground/80 mb-8 font-light">
+              <p className="text-xs md:text-base leading-relaxed text-foreground/80 mb-8 font-light max-w-sm mx-auto md:mx-0 text-center md:text-left tracking-wider">
                 The Natural Gem is your partner for gemstone investments, with 30 years of experience and leadership in
                 natural, untreated colored stones.
               </p>
-              <button className="flex items-center gap-3 text-sm font-medium tracking-wide hover:opacity-70 transition-opacity group">
-                ABOUT US
-                <span className="text-lg group-hover:translate-x-1 transition-transform">↗</span>
-              </button>
+              <div className="flex justify-center md:justify-start">
+                <button className="flex items-center gap-3 text-xs md:text-sm font-medium tracking-widest hover:opacity-70 transition-opacity group">
+                  ABOUT US
+                  <span className="text-lg group-hover:translate-x-1 transition-transform">↗</span>
+                </button>
+              </div>
             </div>
 
+            {/* Center Column: Visuals - Primary Focus on Mobile */}
             <div
-                className={`flex flex-col items-center transition-all duration-700 ${
+                className={`order-1 md:order-2 flex flex-col items-center transition-all duration-1000 ${
                     isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
                 }`}
             >
-              <h1 className="text-5xl lg:text-6xl font-extralight tracking-wide text-center mb-12 leading-tight font-serif">
-                NATURAL
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extralight tracking-[0.1em] text-center mb-10 md:mb-16 leading-[1.1] font-serif uppercase">
+                Natural
                 <br />
-                RARITY
+                Rarity
               </h1>
 
-              <div className="relative w-64 h-80 flex items-center justify-center mb-8">
-                <div className="absolute inset-0 bg-gradient-to-b from-foreground/5 via-transparent to-transparent rounded-full blur-3xl" />
+              {/* Gemstone Display */}
+              <div className="relative w-48 h-64 sm:w-64 sm:h-80 flex items-center justify-center mb-12">
+                <div className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-transparent to-transparent rounded-full blur-3xl opacity-50" />
 
                 <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                   {diamondImages.map((image, index) => (
                       <img
                           key={index}
                           src={image || "/placeholder.svg"}
-                          alt={`Diamond ${index + 1}`}
-                          className={`absolute w-full h-full object-cover rounded-lg transition-all duration-1000 ${
-                              index === currentImageIndex ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                          alt={`Gemstone ${index + 1}`}
+                          className={`absolute w-full h-full object-contain drop-shadow-2xl transition-all duration-1000 ease-in-out ${
+                              index === currentImageIndex ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-75 rotate-12"
                           }`}
                       />
                   ))}
                 </div>
 
-                <div className="absolute bottom-4 flex gap-2">
+                {/* Pagination Dots */}
+                <div className="absolute -bottom-8 flex gap-3">
                   {diamondImages.map((_, index) => (
                       <button
                           key={index}
                           onClick={() => setCurrentImageIndex(index)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                              index === currentImageIndex ? "bg-foreground/60 w-6" : "bg-foreground/20 hover:bg-foreground/40"
+                          className={`h-1 rounded-full transition-all duration-500 ${
+                              index === currentImageIndex ? "bg-foreground w-8" : "bg-foreground/20 hover:bg-foreground/40 w-2"
                           }`}
+                          aria-label={`Go to slide ${index + 1}`}
                       />
                   ))}
                 </div>
               </div>
             </div>
+
+            {/* Right Column: Balancing Element or Empty for Layout */}
+            <div className="order-3 md:order-3 hidden md:block" />
           </div>
         </section>
       </main>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

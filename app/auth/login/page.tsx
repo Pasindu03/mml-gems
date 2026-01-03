@@ -1,0 +1,86 @@
+"use client"
+
+import type React from "react"
+
+import { createClient } from "@/lib/supabase/client"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+
+export default function LoginPage() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault()
+        const supabase = createClient()
+        setIsLoading(true)
+        setError(null)
+
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            })
+            if (error) throw error
+            router.push("/account")
+            router.refresh()
+        } catch (error: any) {
+            setError(error.message || "An error occurred")
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <div className="flex min-h-screen items-center justify-center p-6 bg-background">
+            <div className="w-full max-w-sm space-y-8">
+                <div className="text-center space-y-2">
+                    <h1 className="text-3xl font-bold tracking-widest">MML GEMS</h1>
+                    <p className="text-muted-foreground">Sign in to your account</p>
+                </div>
+                <form onSubmit={handleLogin} className="space-y-6">
+                    <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="m@example.com"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 focus-visible:border-primary px-0"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 focus-visible:border-primary px-0"
+                        />
+                    </div>
+                    {error && <p className="text-sm text-destructive">{error}</p>}
+                    <Button type="submit" className="w-full py-6 tracking-widest" disabled={isLoading}>
+                        {isLoading ? "SIGNING IN..." : "SIGN IN"}
+                    </Button>
+                    <div className="text-center text-sm">
+                        Don&apos;t have an account?{" "}
+                        <Link href="/auth/sign-up" className="underline font-medium">
+                            Sign up
+                        </Link>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}

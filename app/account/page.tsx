@@ -1,166 +1,56 @@
-'use client'
+import { createClient } from "@/lib/supabase/server"
+import { redirect } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
-import { useState } from 'react'
-import Navbar from "@/components/navbar";
+export default async function AccountPage() {
+    const supabase = await createClient()
+    const {
+        data: { user },
+        error,
+    } = await supabase.auth.getUser()
 
-export default function AccountPage() {
-    const [isLogin, setIsLogin] = useState(true)
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-        firstName: '',
-        lastName: ''
-    })
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
+    if (error || !user) {
+        redirect("/auth/login")
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
-    }
+    const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single()
 
     return (
-        <main className="w-full min-h-screen bg-background text-foreground">
-            {/* Navigation */}
-            <Navbar />
+        <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <div className="space-y-8">
+                <div className="border-b border-border pb-6">
+                    <h1 className="text-3xl font-bold tracking-widest">YOUR ACCOUNT</h1>
+                    <p className="text-muted-foreground mt-2">Welcome back, {profile?.full_name || user.email}</p>
+                </div>
 
-            {/* Account Section */}
-            <section className="w-full pt-32 pb-16 px-8">
-                <div className="max-w-md mx-auto">
-                    {/* Header */}
-                    <div className="mb-12 text-center">
-                        <h1 className="text-4xl font-extralight tracking-wide mb-8 font-serif">
-                            {isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT'}
-                        </h1>
+                <div className="grid md:grid-cols-2 gap-12">
+                    <div className="space-y-6">
+                        <h2 className="text-xl font-bold tracking-widest">ORDER HISTORY</h2>
+                        <div className="bg-muted/30 p-8 text-center border border-border">
+                            <p className="text-sm text-muted-foreground tracking-wider">YOU HAVEN&apos;T PLACED ANY ORDERS YET.</p>
+                        </div>
                     </div>
 
-                    {/* Form */}
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                        {!isLogin && (
-                            <>
-                                <div>
-                                    <label htmlFor="firstName" className="text-xs font-medium tracking-widest mb-3 block text-foreground/60">
-                                        FIRST NAME
-                                    </label>
-                                    <input
-                                        id="firstName"
-                                        name="firstName"
-                                        type="text"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                        placeholder="John"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="lastName" className="text-xs font-medium tracking-widest mb-3 block text-foreground/60">
-                                        LAST NAME
-                                    </label>
-                                    <input
-                                        id="lastName"
-                                        name="lastName"
-                                        type="text"
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                        placeholder="Doe"
-                                    />
-                                </div>
-                            </>
-                        )}
-
-                        <div>
-                            <label htmlFor="email" className="text-xs font-medium tracking-widest mb-3 block text-foreground/60">
-                                EMAIL ADDRESS
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                placeholder="your@email.com"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="password" className="text-xs font-medium tracking-widest mb-3 block text-foreground/60">
-                                PASSWORD
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                placeholder="••••••••"
-                            />
-                        </div>
-
-                        {!isLogin && (
+                    <div className="space-y-6">
+                        <h2 className="text-xl font-bold tracking-widest">ACCOUNT DETAILS</h2>
+                        <div className="space-y-4 text-sm tracking-wider">
                             <div>
-                                <label htmlFor="confirmPassword" className="text-xs font-medium tracking-widest mb-3 block text-foreground/60">
-                                    CONFIRM PASSWORD
-                                </label>
-                                <input
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    type="password"
-                                    value={formData.confirmPassword}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                    placeholder="••••••••"
-                                />
+                                <p className="font-bold">NAME</p>
+                                <p className="text-muted-foreground">{profile?.full_name || "Not provided"}</p>
                             </div>
-                        )}
-
-                        {isLogin && (
-                            <div className="text-right">
-                                <button
-                                    type="button"
-                                    className="text-xs font-light text-foreground/60 hover:text-foreground/80 transition-colors"
-                                >
-                                    Forgot password?
-                                </button>
+                            <div>
+                                <p className="font-bold">EMAIL</p>
+                                <p className="text-muted-foreground">{user.email}</p>
                             </div>
-                        )}
-
-                        <button
-                            type="submit"
-                            className="w-full bg-foreground text-background py-3 text-sm font-medium tracking-wide hover:opacity-80 transition-opacity mt-8"
-                        >
-                            {isLogin ? 'SIGN IN' : 'CREATE ACCOUNT'}
-                        </button>
-                    </form>
-
-                    {/* Toggle */}
-                    <div className="mt-8 text-center text-sm font-light">
-                        <span className="text-foreground/60">
-                          {isLogin ? "Don't have an account? " : 'Already have an account? '}
-                        </span>
-                        <button
-                            onClick={() => {
-                                setIsLogin(!isLogin)
-                                setFormData({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '' })
-                            }}
-                            className="font-medium hover:opacity-70 transition-opacity"
-                        >
-                            {isLogin ? 'Sign up' : 'Sign in'}
-                        </button>
+                            <form action="/auth/sign-out" method="POST">
+                                <Button variant="outline" className="w-full py-6 tracking-widest mt-4 bg-transparent">
+                                    LOG OUT
+                                </Button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
     )
 }
