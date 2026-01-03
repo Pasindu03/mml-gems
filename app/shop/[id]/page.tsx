@@ -19,12 +19,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-16">
                     <div className="aspect-square relative overflow-hidden bg-muted/20">
-                        <Image
+                        <img
                             src={product.image_url}
                             alt={product.name}
-                            fill
                             className="object-cover"
-                            priority
                         />
                     </div>
 
