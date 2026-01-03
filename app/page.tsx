@@ -78,7 +78,7 @@ const Page = () => {
                           key={index}
                           src={image || "/placeholder.svg"}
                           alt={`Gemstone ${index + 1}`}
-                          className={`absolute w-full h-full object-contain drop-shadow-2xl transition-all duration-1000 ease-in-out ${
+                          className={`absolute w-250 h-250 object-contain drop-shadow-2xl transition-all duration-1000 ease-in-out ${
                               index === currentImageIndex ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-75 rotate-12"
                           }`}
                       />
