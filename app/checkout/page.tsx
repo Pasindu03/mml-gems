@@ -48,9 +48,9 @@ export default async function CheckoutPage() {
                             <div className="space-y-4 border-b border-border pb-6">
                                 {cartItems.map((item: any) => (
                                     <div key={item.id} className="flex justify-between text-xs tracking-widest">
-                  <span className="uppercase">
-                    {item.products.name} x {item.quantity}
-                  </span>
+                                        <span className="uppercase">
+                                            {item.products.name} x {item.quantity}
+                                        </span>
                                         <span>${(item.products.price * item.quantity).toLocaleString()}</span>
                                     </div>
                                 ))}

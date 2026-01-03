@@ -32,10 +32,9 @@ export default function CartItemRow({ item }: { item: any }) {
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center group opacity-100 transition-opacity disabled:opacity-50">
       <div className="md:col-span-2 flex gap-6 items-center">
         <div className="relative h-24 w-24 bg-muted/20 flex-shrink-0">
-          <Image
+          <img
             src={item.products.image_url || "/placeholder.svg?height=200&width=200"}
             alt={item.products.name}
-            fill
             className="object-cover"
           />
         </div>
