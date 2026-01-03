@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import CartItemRow from "@/components/cart-item-row"
+import Navbar from "@/components/navbar";
 
 export default async function CartPage() {
     const supabase = await createClient()
@@ -32,9 +33,9 @@ export default async function CartPage() {
 
     return (
         <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <Navbar />
             <div className="space-y-12">
                 <h1 className="text-3xl font-bold tracking-[0.2em] text-center">SHOPPING CART</h1>
-
                 {!cartItems || cartItems.length === 0 ? (
                     <div className="text-center space-y-6 py-24">
                         <p className="tracking-widest text-muted-foreground uppercase">Your cart is currently empty.</p>

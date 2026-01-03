@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 export default function AboutPage() {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -12,21 +13,7 @@ export default function AboutPage() {
 
     return (
         <main className="w-full min-h-screen bg-background text-foreground">
-            {/* Navigation */}
-            <nav className="fixed top-0 z-50 w-full px-8 py-6 flex items-center justify-between bg-background border-b border-border">
-                <div className="flex gap-8 text-sm font-medium tracking-wider">
-                    <a href="/shop" className="hover:opacity-70 transition-opacity">SHOP</a>
-                    <a href="/about" className="hover:opacity-70 transition-opacity">ABOUT</a>
-                    <a href="/contact" className="hover:opacity-70 transition-opacity">CONTACT</a>
-                </div>
-                <Link href="/">
-                    <div className="text-sm font-bold tracking-widest">MML GEMS</div>
-                </Link>
-                <div className="flex gap-6 text-sm font-medium tracking-wider">
-                    <button className="hover:opacity-70 transition-opacity">ACCOUNT</button>
-                    <button className="hover:opacity-70 transition-opacity">CART (0)</button>
-                </div>
-            </nav>
+            <Navbar />
 
             {/* About Section */}
             <section className="pt-24 pb-20 px-8">

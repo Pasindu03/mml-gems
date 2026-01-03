@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import Navbar from "@/components/navbar";
 
 export default async function AccountPage() {
     const supabase = await createClient()
@@ -17,6 +18,7 @@ export default async function AccountPage() {
 
     return (
         <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <Navbar />
             <div className="space-y-8">
                 <div className="border-b border-border pb-6">
                     <h1 className="text-3xl font-bold tracking-widest">YOUR ACCOUNT</h1>

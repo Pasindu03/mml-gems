@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import AddToCartButton from "@/components/add-to-cart-button"
+import Navbar from "@/components/navbar";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
@@ -14,6 +15,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
     return (
         <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <Navbar />
             <div className="grid lg:grid-cols-2 gap-16">
                 <div className="aspect-square relative overflow-hidden bg-muted/20">
                     <Image

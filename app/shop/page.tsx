@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import Image from "next/image"
 import Link from "next/link"
+import Navbar from "@/components/navbar";
 
 export default async function ShopPage() {
     const supabase = await createClient()
@@ -8,6 +9,7 @@ export default async function ShopPage() {
 
     return (
         <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <Navbar />
             <div className="space-y-12">
                 <div className="text-center space-y-4">
                     <h1 className="text-4xl font-bold tracking-[0.2em]">COLLECTIONS</h1>

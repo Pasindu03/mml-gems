@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import CheckoutForm from "@/components/checkout-form"
+import Navbar from "@/components/navbar";
 
 export default async function CheckoutPage() {
     const supabase = await createClient()
@@ -33,6 +34,7 @@ export default async function CheckoutPage() {
 
     return (
         <div className="min-h-screen pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto">
+            <Navbar />
             <div className="grid lg:grid-cols-2 gap-16">
                 <div className="space-y-8 order-2 lg:order-1">
                     <h1 className="text-2xl font-bold tracking-widest uppercase">SHIPPING INFORMATION</h1>
