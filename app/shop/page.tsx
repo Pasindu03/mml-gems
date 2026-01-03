@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from "next/link";
 import Navbar from "@/components/navbar";
 
 interface Product {
@@ -24,14 +23,6 @@ export default function ShopPage() {
     // Product data
     const products: Product[] = [
         {
-            id: 1,
-            name: 'Alexandrite',
-            category: 'gemstones',
-            price: '$2,450',
-            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/alexandrite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9hbGV4YW5kcml0ZS5qcGVnIiwiaWF0IjoxNzYzMzA3MzQ1LCJleHAiOjE3OTQ4NDMzNDV9.-ZIb94xPZz2Elzx-7wVVkKAECprIgN8stcHS8y53qHs',
-            description: 'Premium natural alexandrite gemstone'
-        },
-        {
             id: 2,
             name: 'Blue Sapphire',
             category: 'gemstones',
@@ -46,30 +37,6 @@ export default function ShopPage() {
             price: '$3,200',
             image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNhcHBoaXJlLmpwZWciLCJpYXQiOjE3NjMzMDczOTgsImV4cCI6MTc5NDg0MzM5OH0.JgR0-jhnDD1deXPqAR5PXFQkM2wmzksJnAnmXwyCDSo',
             description: 'Premium natural pink sapphire'
-        },
-        {
-            id: 4,
-            name: 'Pink Spinel',
-            category: 'gemstones',
-            price: '$1,650',
-            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/pink-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9waW5rLXNwaW5lbC5qcGVnIiwiaWF0IjoxNzYzMzA3NDA3LCJleHAiOjE3OTQ4NDM0MDd9.wDiSs3mNgwQ8apYv5skqZ1PGAuE8GdEuB8o0aHXDSnI',
-            description: 'High-grade natural pink spinel'
-        },
-        {
-            id: 5,
-            name: 'Red Spinel',
-            category: 'gemstones',
-            price: '$5,800',
-            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/red-spinel.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy9yZWQtc3BpbmVsLmpwZWciLCJpYXQiOjE3NjMzMDc0MTksImV4cCI6MTc5NDg0MzQxOX0.wC9UDaGPdZd60K2-jFneM8gs841WTU3PLLikg9o1Sps',
-            description: 'Rare natural red spinel gemstone'
-        },
-        {
-            id: 6,
-            name: 'Taaffeite',
-            category: 'gemstones',
-            price: '$2,100',
-            image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/taaffeite.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy90YWFmZmVpdGUuanBlZyIsImlhdCI6MTc2MzMwNzQzNiwiZXhwIjoxNzk0ODQzNDM2fQ.A6NR9UFLesM-g6BU5Cn4Ui7drRrycAcme0abPtEpPbU',
-            description: 'Extremely rare natural taaffeite'
         },
         {
             id: 7,
@@ -87,9 +54,33 @@ export default function ShopPage() {
             image: 'https://cxivizteenjzkzrbnydz.supabase.co/storage/v1/object/sign/mml-gems/white-sapphire.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83M2FmYTAyNS0xMTg5LTRkYWYtYjI5MS0wNGE0MDc5NTgxNzMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbWwtZ2Vtcy93aGl0ZS1zYXBwaGlyZS5qcGVnIiwiaWF0IjoxNzYzMzA3NDU0LCJleHAiOjE3OTQ4NDM0NTR9.daukSiwrXui-RBzIdljgO7POw-Dg6BvJ0_xOMW0mngY',
             description: 'Brilliant natural white sapphire'
         },
+        {
+            id: 9,
+            name: 'White Sapphire Ring',
+            category: 'rings',
+            price: '$1,200',
+            image: 'https://www.kayoutlet.com/productimages/processed/V-134544105_0_800.jpg?pristine=true',
+            description: 'Brilliant natural white sapphire'
+        },
+        {
+            id: 10,
+            name: 'White Sapphire Earrings',
+            category: 'earrings',
+            price: '$1,200',
+            image: 'https://www.peoplesjewellers.com/productimages/processed/V-18151555_0_800.jpg',
+            description: 'Brilliant natural white sapphire'
+        },
+        {
+            id: 11,
+            name: 'White Sapphire Bracelet',
+            category: 'bracelets',
+            price: '$1,200',
+            image: 'https://jianlondon.com/prodimages/Large/72330WNC-2.jpg',
+            description: 'Brilliant natural white sapphire'
+        },
     ];
 
-    const categories = ['all', 'rings', 'pendants', 'bracelets', 'earrings']
+    const categories = ['all', 'gemstones', 'rings', 'pendants', 'bracelets', 'earrings']
     const filteredProducts = selectedCategory === 'all'
         ? products
         : products.filter(p => p.category === selectedCategory)
