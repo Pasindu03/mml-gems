@@ -22,7 +22,7 @@ export default async function ShopPage() {
                             <Link key={product.id} href={`/shop/${product.id}`} className="group space-y-4">
                                 <div className="aspect-square relative overflow-hidden bg-muted/20">
                                     <Image
-                                        src={product.image_url || "/placeholder.svg?height=600&width=600"}
+                                        src={product.image_url}
                                         alt={product.name}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"

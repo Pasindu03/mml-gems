@@ -20,7 +20,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <div className="grid lg:grid-cols-2 gap-16">
                     <div className="aspect-square relative overflow-hidden bg-muted/20">
                         <Image
-                            src={product.image_url || "/placeholder.svg?height=800&width=800"}
+                            src={product.image_url}
                             alt={product.name}
                             fill
                             className="object-cover"

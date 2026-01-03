@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Navbar from "@/components/navbar"
+import Image from "next/image"
 
 const Page = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -73,7 +74,7 @@ const Page = () => {
 
                 <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                   {diamondImages.map((image, index) => (
-                      <img
+                      <Image
                           key={index}
                           src={image || "/placeholder.svg"}
                           alt={`Gemstone ${index + 1}`}
