@@ -14,7 +14,6 @@ export default function AboutPage() {
     return (
         <main className="w-full min-h-screen bg-background text-foreground">
             <Navbar />
-
             {/* About Section */}
             <section className="pt-24 pb-20 px-8">
                 <div className="max-w-4xl mx-auto">
