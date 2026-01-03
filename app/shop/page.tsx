@@ -23,7 +23,7 @@ export default async function ShopPage() {
                                     <img
                                         src={product.image_url}
                                         alt={product.name}
-                                        className="object-cover w-300 h-300 transition-transform duration-700 group-hover:scale-105"
+                                        className="object-cover fill transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
                                 <div className="space-y-1 text-center">
