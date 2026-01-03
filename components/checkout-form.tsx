@@ -1,191 +1,268 @@
 "use client"
 
-import * as React from "react"
-import { CreditCard, Landmark, Wallet } from "lucide-react"
-
+import type React from "react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
+import { CreditCard, Landmark, Wallet } from "lucide-react"
 
-export function CheckoutForm() {
-  const [billingSameAsShipping, setBillingSameAsShipping] = React.useState(true)
+export function CheckoutForm({ cartItems, total }: { cartItems: any[]; total: number }) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [billingSameAsShipping, setBillingSameAsShipping] = useState(true)
+  const [paymentMethod, setPaymentMethod] = useState("card")
+  const router = useRouter()
+  const supabase = createClient()
+  const { toast } = useToast()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const address = `${formData.get("address")}, ${formData.get("city")}, ${formData.get("country")}`
+    const billingAddress = billingSameAsShipping
+        ? address
+        : `${formData.get("billingAddress")}, ${formData.get("billingCity")}, ${formData.get("billingCountry")}`
+
+    try {
+      const { data: user } = await supabase.auth.getUser()
+      if (!user.user) throw new Error("User not found")
+
+      const { data: order, error: orderError } = await supabase
+          .from("orders")
+          .insert({
+            user_id: user.user.id,
+            total_amount: total,
+            shipping_address: address,
+            billing_address: billingAddress,
+            payment_method: paymentMethod,
+            status: "completed",
+          })
+          .select()
+          .single()
+
+      if (orderError) throw orderError
+
+      toast({
+        title: "Order placed successfully",
+        description: "Thank you for your purchase!",
+      })
+
+      router.push("/success")
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-      <div className="grid gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-8">
-          {/* Step 1: Attendee Information (Existing) */}
-          <section className="space-y-4">
-            <div className="flex items-center gap-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-              1
-            </span>
-              <h2 className="text-xl font-bold tracking-tight">Complete your attendee information</h2>
-            </div>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="grid gap-2">
-                    <Label htmlFor="first-name">First Name</Label>
-                    <Input id="first-name" placeholder="Jane" />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="last-name">Last Name</Label>
-                    <Input id="last-name" placeholder="Doe" />
-                  </div>
-                  <div className="grid gap-2 sm:col-span-2">
-                    <Label htmlFor="email">Work Email</Label>
-                    <Input id="email" type="email" placeholder="jane.doe@example.com" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Step 2: Payment Method (New) */}
-          <section className="space-y-4">
-            <div className="flex items-center gap-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-              2
-            </span>
-              <h2 className="text-xl font-bold tracking-tight">Select payment method</h2>
-            </div>
-            <Card>
-              <CardContent className="pt-6">
-                <RadioGroup defaultValue="card" className="grid gap-4">
-                  <div>
-                    <RadioGroupItem value="card" id="card" className="peer sr-only" />
-                    <Label
-                        htmlFor="card"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                    >
-                      <CreditCard className="mb-3 h-6 w-6" />
-                      Card
-                    </Label>
-                  </div>
-                  <div>
-                    <RadioGroupItem value="paypal" id="paypal" className="peer sr-only" />
-                    <Label
-                        htmlFor="paypal"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                    >
-                      <Wallet className="mb-3 h-6 w-6" />
-                      PayPal
-                    </Label>
-                  </div>
-                  <div>
-                    <RadioGroupItem value="apple" id="apple" className="peer sr-only" />
-                    <Label
-                        htmlFor="apple"
-                        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                    >
-                      <Landmark className="mb-3 h-6 w-6" />
-                      Apple Pay
-                    </Label>
-                  </div>
-                </RadioGroup>
-
-                <div className="mt-6 grid gap-4">
-                  <div className="grid gap-2">
-                    <Label htmlFor="card-number">Card Number</Label>
-                    <Input id="card-number" placeholder="0000 0000 0000 0000" />
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="grid gap-2 col-span-2">
-                      <Label htmlFor="expiry">Expiry Date</Label>
-                      <Input id="expiry" placeholder="MM / YY" />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input id="cvv" placeholder="123" />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Step 3: Billing Address (New) */}
-          <section className="space-y-4">
-            <div className="flex items-center gap-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-              3
-            </span>
-              <h2 className="text-xl font-bold tracking-tight">Billing address</h2>
-            </div>
-            <Card>
-              <CardContent className="pt-6 space-y-6">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                      id="billing-same"
-                      checked={billingSameAsShipping}
-                      onCheckedChange={(checked) => setBillingSameAsShipping(checked as boolean)}
-                  />
-                  <Label
-                      htmlFor="billing-same"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Billing address is the same as my shipping address
+      <form onSubmit={handleSubmit} className="grid gap-12 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-12">
+          {/* Shipping Address */}
+          <div className="space-y-6">
+            <h3 className="text-sm tracking-[0.2em] font-bold uppercase border-b pb-2">Shipping Information</h3>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="address" className="text-[10px] tracking-widest font-bold uppercase">
+                  ADDRESS
+                </Label>
+                <Input
+                    id="address"
+                    name="address"
+                    required
+                    className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="city" className="text-[10px] tracking-widest font-bold uppercase">
+                    CITY
                   </Label>
+                  <Input
+                      id="city"
+                      name="city"
+                      required
+                      className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                  />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="country" className="text-[10px] tracking-widest font-bold uppercase">
+                    COUNTRY
+                  </Label>
+                  <Input
+                      id="country"
+                      name="country"
+                      required
+                      className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-                {!billingSameAsShipping && (
-                    <div className="grid gap-4 animate-in fade-in slide-in-from-top-2">
-                      <div className="grid gap-2">
-                        <Label htmlFor="address">Address</Label>
-                        <Input id="address" placeholder="123 Main St" />
-                      </div>
-                      <div className="grid gap-2">
-                        <Label htmlFor="city">City</Label>
-                        <Input id="city" placeholder="New York" />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="grid gap-2">
-                          <Label htmlFor="state">State / Province</Label>
-                          <Select>
-                            <SelectTrigger id="state">
-                              <SelectValue placeholder="Select" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="ny">New York</SelectItem>
-                              <SelectItem value="ca">California</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="grid gap-2">
-                          <Label htmlFor="zip">Zip / Postal Code</Label>
-                          <Input id="zip" placeholder="10001" />
-                        </div>
-                      </div>
+          {/* Payment Method */}
+          <div className="space-y-6">
+            <h3 className="text-sm tracking-[0.2em] font-bold uppercase border-b pb-2">Payment Method</h3>
+            <RadioGroup
+                defaultValue="card"
+                onValueChange={setPaymentMethod}
+                className="grid grid-cols-1 md:grid-cols-3 gap-4"
+            >
+              <div>
+                <RadioGroupItem value="card" id="card" className="peer sr-only" />
+                <Label
+                    htmlFor="card"
+                    className="flex flex-col items-center justify-between rounded-none border border-border bg-transparent p-4 hover:bg-muted/10 cursor-pointer peer-data-[state=checked]:border-primary transition-all"
+                >
+                  <CreditCard className="mb-2 h-5 w-5" />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Credit Card</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="paypal" id="paypal" className="peer sr-only" />
+                <Label
+                    htmlFor="paypal"
+                    className="flex flex-col items-center justify-between rounded-none border border-border bg-transparent p-4 hover:bg-muted/10 cursor-pointer peer-data-[state=checked]:border-primary transition-all"
+                >
+                  <Wallet className="mb-2 h-5 w-5" />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">PayPal</span>
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem value="apple" id="apple" className="peer sr-only" />
+                <Label
+                    htmlFor="apple"
+                    className="flex flex-col items-center justify-between rounded-none border border-border bg-transparent p-4 hover:bg-muted/10 cursor-pointer peer-data-[state=checked]:border-primary transition-all"
+                >
+                  <Landmark className="mb-2 h-5 w-5" />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Apple Pay</span>
+                </Label>
+              </div>
+            </RadioGroup>
+
+            {paymentMethod === "card" && (
+                <div className="grid gap-6 pt-4 animate-in fade-in slide-in-from-top-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="card-number" className="text-[10px] tracking-widest font-bold uppercase">
+                      CARD NUMBER
+                    </Label>
+                    <Input
+                        id="card-number"
+                        placeholder="0000 0000 0000 0000"
+                        className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="expiry" className="text-[10px] tracking-widest font-bold uppercase">
+                        EXPIRY
+                      </Label>
+                      <Input
+                          id="expiry"
+                          placeholder="MM / YY"
+                          className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                      />
                     </div>
-                )}
-              </CardContent>
-            </Card>
-          </section>
+                    <div className="space-y-2">
+                      <Label htmlFor="cvv" className="text-[10px] tracking-widest font-bold uppercase">
+                        CVV
+                      </Label>
+                      <Input
+                          id="cvv"
+                          placeholder="123"
+                          className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                      />
+                    </div>
+                  </div>
+                </div>
+            )}
+          </div>
+
+          {/* Billing Address */}
+          <div className="space-y-6">
+            <h3 className="text-sm tracking-[0.2em] font-bold uppercase border-b pb-2">Billing Address</h3>
+            <div className="flex items-center space-x-3">
+              <Checkbox
+                  id="billing-same"
+                  checked={billingSameAsShipping}
+                  onCheckedChange={(checked) => setBillingSameAsShipping(checked as boolean)}
+                  className="rounded-none border-primary data-[state=checked]:bg-primary"
+              />
+              <Label htmlFor="billing-same" className="text-[10px] tracking-widest font-bold uppercase cursor-pointer">
+                Same as shipping information
+              </Label>
+            </div>
+
+            {!billingSameAsShipping && (
+                <div className="space-y-4 pt-4 animate-in fade-in slide-in-from-top-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="billingAddress" className="text-[10px] tracking-widest font-bold uppercase">
+                      ADDRESS
+                    </Label>
+                    <Input
+                        id="billingAddress"
+                        name="billingAddress"
+                        required={!billingSameAsShipping}
+                        className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="billingCity" className="text-[10px] tracking-widest font-bold uppercase">
+                        CITY
+                      </Label>
+                      <Input
+                          id="billingCity"
+                          name="billingCity"
+                          required={!billingSameAsShipping}
+                          className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="billingCountry" className="text-[10px] tracking-widest font-bold uppercase">
+                        COUNTRY
+                      </Label>
+                      <Input
+                          id="billingCountry"
+                          name="billingCountry"
+                          required={!billingSameAsShipping}
+                          className="rounded-none border-t-0 border-x-0 border-b border-border focus-visible:ring-0 px-0 bg-transparent"
+                      />
+                    </div>
+                  </div>
+                </div>
+            )}
+          </div>
         </div>
 
-        {/* Order Summary (New) */}
+        {/* Order Summary */}
         <div className="space-y-6">
-          <Card className="sticky top-8">
-            <CardHeader>
-              <CardTitle>Order summary</CardTitle>
-              <CardDescription>Review your ticket selection.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <div className="sticky top-8">
+            <div className="border-b pb-4">
+              <span className="font-serif italic text-2xl text-muted-foreground/50">Order summary</span>
+              <h2 className="font-serif text-2xl tracking-tight">Review your ticket selection.</h2>
+            </div>
+            <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between">
                 <div className="grid gap-0.5">
                   <span className="font-medium">Early bird in-person ticket</span>
                   <span className="text-sm text-muted-foreground">Vercel Ship 2025</span>
                 </div>
-                <span className="font-medium">$350.00</span>
+                <span className="font-medium">${total.toFixed(2)}</span>
               </div>
               <div className="border-t pt-4 space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span>$350.00</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Taxes</span>
@@ -193,17 +270,21 @@ export function CheckoutForm() {
                 </div>
                 <div className="flex items-center justify-between font-bold text-lg pt-2">
                   <span>Total</span>
-                  <span>$350.00</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
               </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full" size="lg">
-                Complete purchase
+            </div>
+            <div className="pt-8">
+              <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full py-8 tracking-[0.2em] font-bold uppercase rounded-none"
+              >
+                {isLoading ? "PROCESSING..." : "PLACE ORDER"}
               </Button>
-            </CardFooter>
-          </Card>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
   )
 }
