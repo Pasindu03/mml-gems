@@ -34,7 +34,7 @@ export default function ContactPage() {
                 <div className="max-w-4xl mx-auto">
                     {/* Header */}
                     <div className="mb-16 text-center">
-                        <h1 className="text-5xl font-extralight tracking-wide mb-6 font-serif">GET IN TOUCH</h1>
+                        <h1 className="text-6xl font-extralight tracking-wide mb-6 font-serif">GET IN TOUCH</h1>
                         <p className="text-sm text-foreground/70 font-light max-w-md mx-auto">
                             Have questions about our gemstones? We're here to help and would love to hear from you.
                         </p>
@@ -46,30 +46,28 @@ export default function ContactPage() {
                         <div className="space-y-12">
                             <div>
                                 <p className="text-xs font-medium tracking-widest mb-3 text-foreground/60">PHONE</p>
-                                <a href="tel:+1234567890" className="text-sm font-light hover:opacity-70 transition-opacity">
-                                    +1 (234) 567-890
+                                <a href="tel:+94705275557" className="text-sm font-light hover:opacity-70 transition-opacity">
+                                    +94705275557
                                 </a>
                             </div>
                             <div>
                                 <p className="text-xs font-medium tracking-widest mb-3 text-foreground/60">EMAIL</p>
-                                <a href="mailto:hello@naturalgems.com" className="text-sm font-light hover:opacity-70 transition-opacity">
-                                    hello@naturalgems.com
+                                <a href="mailto:md@mmlgemsandjewellers.com" className="text-sm font-light hover:opacity-70 transition-opacity">
+                                    md@mmlgemsandjewellers.com
                                 </a>
                             </div>
                             <div>
                                 <p className="text-xs font-medium tracking-widest mb-3 text-foreground/60">ADDRESS</p>
                                 <p className="text-sm font-light">
-                                    123 Gem Street<br />
-                                    New York, NY 10001<br />
-                                    United States
+                                    No 28/23 Podusewa Road<br />
+                                    Keselwththa, Panadura<br />
+                                    Sri Lanka
                                 </p>
                             </div>
                             <div>
                                 <p className="text-xs font-medium tracking-widest mb-3 text-foreground/60">HOURS</p>
                                 <p className="text-sm font-light">
-                                    Mon - Fri: 10:00 AM - 6:00 PM<br />
-                                    Sat: 11:00 AM - 5:00 PM<br />
-                                    Sun: Closed
+                                    Always open 24x7
                                 </p>
                             </div>
                         </div>
@@ -139,7 +137,7 @@ export default function ContactPage() {
                             <div className="flex items-center justify-center">
                                 <div className="text-center">
                                     <p className="text-lg font-light mb-2">Thank you for reaching out!</p>
-                                    <p className="text-sm text-foreground/60 font-light">We'll get back to you within 24 hours.</p>
+                                    <p className="text-sm text-foreground/60 font-light">We'll get back to you within 24 hours or less.</p>
                                 </div>
                             </div>
                         )}

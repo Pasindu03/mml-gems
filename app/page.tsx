@@ -1,12 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Navbar from "@/components/navbar"
-import Image from "next/image"
+import {useEffect, useState} from "react";
 
 const Page = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  /*const supabase = await createClient()
+  const { data: products } = await supabase.from("products").select("*").order("created_at", { ascending: false })*/
 
   const diamondImages = [
     "https://uecokubvgdtijwhrhkgo.supabase.co/storage/v1/object/public/Pictures/blue-sapphire.jpeg",

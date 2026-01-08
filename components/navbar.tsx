@@ -43,30 +43,30 @@ const Navbar = () => {
             <div className="md:hidden flex-1">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="p-2 hover:bg-accent rounded-md transition-colors"
+                    className="p-2 hover:bg-blue-200 rounded-md transition-colors"
                     aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={20} /> : <Menu size={20} />}
                 </button>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex flex-1 gap-8 text-[10px] md:text-xs font-medium tracking-[0.2em]">
-                <Link href="/shop" className="hover:opacity-70 transition-opacity uppercase">
-                    SHOP
+            {/* Logo - Centered */}
+            <div className="flex-1 flex justify-left">
+                <Link href="/" className="text-sm md:text-base font-bold tracking-[0.3em] whitespace-nowrap">
+                    MML GEMS
                 </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex justify-center flex-1 gap-8 text-[10px] md:text-xs font-medium tracking-[0.2em]">
                 <Link href="/about" className="hover:opacity-70 transition-opacity uppercase">
                     ABOUT
                 </Link>
                 <Link href="/contact" className="hover:opacity-70 transition-opacity uppercase">
                     CONTACT
                 </Link>
-            </div>
-
-            {/* Logo - Centered */}
-            <div className="flex-1 flex justify-center">
-                <Link href="/" className="text-sm md:text-base font-bold tracking-[0.3em] whitespace-nowrap">
-                    MML GEMS
+                <Link href={`/blogs`} className={"hover:opacity-70 transition-opacity uppercase"}>
+                    BLOGS
                 </Link>
             </div>
 
@@ -92,30 +92,23 @@ const Navbar = () => {
             {isOpen && (
                 <div className="fixed inset-0 top-[65px] md:hidden bg-background z-40 flex flex-col p-8 gap-6 animate-in slide-in-from-top duration-300">
                     <Link
-                        href="/shop"
-                        onClick={() => setIsOpen(false)}
-                        className="text-lg font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
-                    >
-                        Shop
-                    </Link>
-                    <Link
                         href="/about"
                         onClick={() => setIsOpen(false)}
-                        className="text-lg font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
+                        className="text-lg bg-orange-100 font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
                     >
                         About
                     </Link>
                     <Link
                         href="/contact"
                         onClick={() => setIsOpen(false)}
-                        className="text-lg font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
+                        className="text-lg bg-orange-100  font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
                     >
                         Contact
                     </Link>
                     <Link
                         href="/account"
                         onClick={() => setIsOpen(false)}
-                        className="text-lg font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
+                        className="text-lg bg-orange-100 font-light tracking-[0.2em] border-b border-border pb-4 uppercase"
                     >
                         {user ? "Account" : "Login"}
                     </Link>
