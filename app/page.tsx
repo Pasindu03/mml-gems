@@ -1,6 +1,7 @@
 import Navbar from "@/components/navbar"
 import Hero from "@/components/home/Hero";
 import HomeShop from "@/components/home/HomeShop";
+import Footer from "@/components/home/Footer";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
         <Navbar />
         <Hero />
         <HomeShop />
+        <Footer />
       </main>
   )
 }
