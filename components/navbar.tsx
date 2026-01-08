@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X, ShoppingCart, User } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import Image from "next/image";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -38,7 +39,7 @@ const Navbar = () => {
     }, [supabase])
 
     return (
-        <nav className="fixed top-0 z-50 w-full px-6 md:px-8 py-4 md:py-6 flex items-center justify-between bg-background/80 backdrop-blur-md border-b border-border">
+        <nav className="fixed top-0 z-50 w-full px-6 md:px-8 py-4 md:py-6 flex items-center justify-between bg-white backdrop-blur-md border-b border-border">
             {/* Mobile Menu Toggle */}
             <div className="md:hidden flex-1">
                 <button
@@ -53,12 +54,15 @@ const Navbar = () => {
             {/* Logo - Centered */}
             <div className="flex-1 flex justify-left">
                 <Link href="/" className="text-sm md:text-base font-bold tracking-[0.3em] whitespace-nowrap">
-                    MML GEMS
+                    <Image src={"/logo.jpg"} alt={"logo"} width={150} height={120}/>
                 </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex justify-center flex-1 gap-8 text-[10px] md:text-xs font-medium tracking-[0.2em]">
+                <Link href="/" className="hover:opacity-70 transition-opacity uppercase">
+                    HOME
+                </Link>
                 <Link href="/about" className="hover:opacity-70 transition-opacity uppercase">
                     ABOUT
                 </Link>

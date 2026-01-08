@@ -17,19 +17,30 @@ export default function ContactPage() {
         setFormData(prev => ({ ...prev, [name]: value }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        setSubmitted(true)
-        setTimeout(() => {
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+
+            if (!res.ok) throw new Error("Failed")
+
+            setSubmitted(true)
             setFormData({ name: '', email: '', phone: '', message: '' })
-            setSubmitted(false)
-        }, 3000)
+
+            setTimeout(() => setSubmitted(false), 3000)
+        } catch {
+            alert("Something went wrong. Please try again.")
+        }
     }
 
     return (
         <main className="w-full min-h-screen bg-background text-foreground">
             <Navbar />
-            {/* Contact Section */}
             <section className="w-full pt-32 pb-16 px-8">
                 <div className="max-w-4xl mx-auto">
                     {/* Header */}
@@ -110,7 +121,7 @@ export default function ContactPage() {
                                         value={formData.phone}
                                         onChange={handleChange}
                                         className="w-full border-b border-foreground/20 bg-transparent py-3 text-sm font-light focus:outline-none focus:border-foreground/50 transition-colors"
-                                        placeholder="+1 (000) 000-0000"
+                                        placeholder="+94 (00) 000-0000"
                                     />
                                 </div>
                                 <div>
