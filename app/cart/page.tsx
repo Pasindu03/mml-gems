@@ -41,7 +41,7 @@ export default async function CartPage() {
                     {!cartItems || cartItems.length === 0 ? (
                         <div className="text-center space-y-6 py-24">
                             <p className="tracking-widest text-muted-foreground uppercase">Your cart is currently empty.</p>
-                            <Link href="/shop">
+                            <Link href="/">
                                 <Button variant="outline" className="px-12 py-6 tracking-widest bg-transparent">
                                     CONTINUE SHOPPING
                                 </Button>

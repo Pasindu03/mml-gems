@@ -27,7 +27,7 @@ export default async function CheckoutPage() {
         .eq("user_id", user.id)
 
     if (!cartItems || cartItems.length === 0) {
-        redirect("/shop")
+        redirect("/")
     }
 
     const total = cartItems.reduce((acc, item: any) => acc + item.products.price * item.quantity, 0)

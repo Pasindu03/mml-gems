@@ -58,7 +58,7 @@ export default function ContactPage() {
                             <div>
                                 <p className="text-xs font-medium tracking-widest mb-3 text-foreground/60">PHONE</p>
                                 <a href="tel:+94705275557" className="text-sm font-light hover:opacity-70 transition-opacity">
-                                    +94705275557
+                                    +94 70 527 5557
                                 </a>
                             </div>
                             <div>
