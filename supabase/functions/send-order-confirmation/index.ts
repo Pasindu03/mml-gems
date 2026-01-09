@@ -3,7 +3,7 @@ import { Resend } from "https://esm.sh/resend"
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"))
 
-serve(async (req) => {
+serve(async (req: any) => {
   try {
     const {
       orderId,
