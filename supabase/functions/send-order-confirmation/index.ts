@@ -1,3 +1,4 @@
+/*
 import { serve } from "https://deno.land/std@0.192.0/http/server.ts"
 import { Resend } from "https://esm.sh/resend"
 
@@ -18,7 +19,7 @@ serve(async (req: any) => {
       return new Response("Missing required fields", { status: 400 })
     }
 
-    /* ---------------- CUSTOMER EMAIL ---------------- */
+    /!* ---------------- CUSTOMER EMAIL ---------------- *!/
     await resend.emails.send({
       from: "MML Gems & Jewellers <orders@mmlgemsandjewellers.com>",
       to: customerEmail,
@@ -46,7 +47,7 @@ serve(async (req: any) => {
       `,
     })
 
-    /* ---------------- ADMIN EMAIL ---------------- */
+    /!* ---------------- ADMIN EMAIL ---------------- *!/
     await resend.emails.send({
       from: "MML Gems & Jewellers <orders@mmlgemsandjewellers.com>",
       to: adminEmail,
@@ -77,3 +78,4 @@ serve(async (req: any) => {
     )
   }
 })
+*/
